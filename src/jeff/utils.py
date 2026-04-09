@@ -13,28 +13,39 @@ logger = logging.getLogger(__name__)
 
 def load_config(config_path: str = "config/config.yaml") -> Dict[str, Any]:
     """
-    Load configuration from YAML file.
+    Load configuration from YAML file and/or environment variables.
+    Environment variables override file values (for production deployment).
 
     Args:
         config_path: Path to configuration file
 
     Returns:
         Configuration dictionary
-
-    Raises:
-        FileNotFoundError: If config file doesn't exist
     """
+    # Try to load from file first
     try:
         with open(config_path, 'r') as file:
             config = yaml.safe_load(file)
             logger.info(f"Configuration loaded from {config_path}")
-            return config or {}
+            config = config or {}
     except FileNotFoundError:
-        logger.warning(f"Config file not found: {config_path}")
-        return {}
+        logger.warning(f"Config file not found: {config_path}, using environment variables")
+        config = {}
     except yaml.YAMLError as e:
         logger.error(f"Error parsing YAML config: {e}")
-        return {}
+        config = {}
+
+    # Override with environment variables if present (for production)
+    if os.environ.get('WEATHER_API_KEY'):
+        config['weather_api_key'] = os.environ.get('WEATHER_API_KEY')
+        logger.info("Using WEATHER_API_KEY from environment")
+
+    if os.environ.get('GROQ_API_KEY'):
+        config['groq_api_key'] = os.environ.get('GROQ_API_KEY')
+        config['use_ai_fallback'] = True
+        logger.info("Using GROQ_API_KEY from environment")
+
+    return config
 
 
 def setup_logging(

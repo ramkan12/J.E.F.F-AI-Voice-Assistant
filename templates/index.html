@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J.E.F.F - Voice Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🎤 J.E.F.F</h1>
+            <p class="subtitle">Just an Extremely Friendly Fella</p>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Chat Display -->
+            <div id="chat-container">
+                <div class="welcome-message">
+                    <p>👋 Hello! I'm J.E.F.F, your voice assistant.</p>
+                    <p>Try asking me about:</p>
+                    <ul>
+                        <li>Time and date</li>
+                        <li>Weather information</li>
+                        <li>Math calculations</li>
+                        <li>Jokes and conversation</li>
+                        <li>Or anything else with AI!</li>
+                    </ul>
+                </div>
+                <div id="messages"></div>
+            </div>
+
+            <!-- Input Controls -->
+            <div class="controls">
+                <!-- Voice Button -->
+                <button id="voiceBtn" class="voice-btn" title="Click to speak">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    <span id="voiceStatus">Click to Speak</span>
+                </button>
+
+                <!-- Text Input -->
+                <div class="text-input-container">
+                    <input
+                        type="text"
+                        id="textInput"
+                        placeholder="Or type your command here..."
+                        autocomplete="off"
+                    >
+                    <button id="sendBtn" class="send-btn">Send</button>
+                </div>
+            </div>
+
+            <!-- Browser Support Notice -->
+            <div id="browserNotice" class="notice" style="display: none;">
+                ⚠️ Voice input not supported in your browser. Please use text input or try Chrome/Edge.
+            </div>
+
+            <!-- Listening Indicator -->
+            <div id="listeningIndicator" class="listening-indicator" style="display: none;">
+                <div class="pulse"></div>
+                <span>Listening...</span>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>Built with Python, Flask, and Web Speech API</p>
+            <p>
+                <a href="https://github.com/ramkan12/J.E.F.F-Voice-Assistant" target="_blank">
+                    View on GitHub
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

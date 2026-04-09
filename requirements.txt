@@ -3,10 +3,17 @@ gTTS>=2.3.0
 SpeechRecognition>=3.10.0
 requests>=2.31.0
 PyYAML>=6.0
-PyAudio>=0.2.13
+
+# Web app dependencies
+Flask>=3.0.0
+Flask-CORS>=4.0.0
+gunicorn>=21.2.0
 
 # AI features (optional - for intelligent fallback responses)
 groq>=0.4.0
+
+# Optional: PyAudio for local voice mode (not needed for web)
+# PyAudio>=0.2.13
 
 # Development dependencies (optional)
 # pytest>=7.0.0

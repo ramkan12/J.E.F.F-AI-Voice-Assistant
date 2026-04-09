@@ -17,22 +17,40 @@
 - 📝 Simple reminders
 - 😄 Jokes and conversation
 
+## 🌐 Try It Online!
+
+**Live Web Demo:** [Coming Soon - Deploy to see it here!]
+
+Experience J.E.F.F in your browser with full voice capabilities - no installation needed!
+
 ## Quick Start
+
+### Option 1: Web Interface (Recommended)
 
 ```bash
 # Clone and install
 git clone https://github.com/ramkan12/J.E.F.F-Voice-Assistant.git
 cd J.E.F.F-Voice-Assistant
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 
-# Configure (add your API key)
-cp config/config.example.yaml config/config.yaml
-# Edit config/config.yaml with your OpenWeatherMap API key
+# Run web app
+python web_app.py
+```
 
-# Run text mode (no microphone needed)
+Open http://localhost:5000 and interact with J.E.F.F through:
+- 🎤 Voice input (click and speak)
+- ⌨️ Text input (type commands)
+- 🔊 Voice responses
+
+### Option 2: Command Line
+
+```bash
+# Text mode (no microphone)
 python jeff_cli.py
 
-# Or run voice mode
+# Voice mode (requires microphone)
 python main.py
 ```
 
