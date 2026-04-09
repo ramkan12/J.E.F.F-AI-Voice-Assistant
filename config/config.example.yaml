@@ -1,0 +1,21 @@
+# J.E.F.F Voice Assistant Configuration Example
+# Copy this file to config.yaml and update with your settings
+
+# API Keys
+weather_api_key: "your_api_key_here"  # Get a free key from https://openweathermap.org/api
+
+# Default Settings
+default_city: "Tampa"
+reminders_file: "reminders.txt"
+
+# Speech Settings
+audio_file: "temp_audio.mp3"
+pause_threshold: 1.0  # Seconds of silence before phrase is considered complete
+
+# Logging
+log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+log_file: "logs/jeff.log"  # Leave empty for no file logging
+
+# AI Features (Optional - makes J.E.F.F much smarter!)
+use_ai_fallback: false  # Set to true to enable AI for general questions
+groq_api_key: "your_groq_api_key_here"  # Get free key from https://console.groq.com
