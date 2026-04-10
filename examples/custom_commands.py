@@ -9,9 +9,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from jeff.core import VoiceAssistant
-from jeff.commands import CommandHandler
-from jeff.utils import load_config, setup_logging
+from src.core import VoiceAssistant
+from src.commands import CommandHandler
+from src.utils import load_config, setup_logging
 
 
 class CustomCommandHandler(CommandHandler):

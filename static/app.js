@@ -64,6 +64,48 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
 
 // Text-to-Speech Setup
 const synth = window.speechSynthesis;
+let selectedVoice = null;
+
+// Get available voices and select a good male voice
+function loadVoices() {
+    const voices = synth.getVoices();
+
+    // Try to find enhanced/premium male voices first, then fallback to any male voice
+    const maleVoices = voices.filter(voice =>
+        voice.name.toLowerCase().includes('male') ||
+        voice.name.toLowerCase().includes('david') ||
+        voice.name.toLowerCase().includes('james') ||
+        voice.name.toLowerCase().includes('daniel') ||
+        voice.name.toLowerCase().includes('fred')
+    );
+
+    // Prefer English voices
+    const englishMaleVoices = maleVoices.filter(voice =>
+        voice.lang.startsWith('en-')
+    );
+
+    // Select the best available voice
+    if (englishMaleVoices.length > 0) {
+        // Prefer "Enhanced" or "Premium" voices
+        selectedVoice = englishMaleVoices.find(v =>
+            v.name.includes('Enhanced') || v.name.includes('Premium')
+        ) || englishMaleVoices[0];
+    } else if (maleVoices.length > 0) {
+        selectedVoice = maleVoices[0];
+    }
+
+    if (selectedVoice) {
+        console.log('Selected voice:', selectedVoice.name);
+    } else {
+        console.log('No male voice found, using default');
+    }
+}
+
+// Load voices when available
+if (synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = loadVoices;
+}
+loadVoices();
 
 function speak(text) {
     if (synth) {
@@ -71,8 +113,15 @@ function speak(text) {
         synth.cancel();
 
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 1.0;
-        utterance.pitch = 1.0;
+
+        // Use selected male voice
+        if (selectedVoice) {
+            utterance.voice = selectedVoice;
+        }
+
+        // Settings for smoother, more masculine sound
+        utterance.rate = 1.1;       // Slightly faster for natural flow
+        utterance.pitch = 0.85;     // Lower pitch for masculine sound
         utterance.volume = 1.0;
 
         synth.speak(utterance);

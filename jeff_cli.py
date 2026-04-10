@@ -11,8 +11,8 @@ import logging
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from jeff.core import VoiceAssistant
-from jeff.utils import load_config, setup_logging
+from src.core import VoiceAssistant
+from src.utils import load_config, setup_logging
 
 
 class TextOnlyAssistant(VoiceAssistant):

@@ -12,8 +12,8 @@ from flask_cors import CORS
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from jeff.commands import CommandHandler
-from jeff.utils import load_config, setup_logging
+from src.commands import CommandHandler
+from src.utils import load_config, setup_logging
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for API requests
@@ -43,13 +43,13 @@ def process_command(command_text: str) -> str:
     if not command:
         return "I didn't catch that. Please try again."
 
-    # Greeting
-    if any(word in command for word in ['hello', 'hi', 'hey', 'greetings']):
-        return command_handler.get_greeting()
-
-    # Status check
-    elif any(phrase in command for phrase in ['how are you', "what's up", "how's it going", 'how are things']):
+    # Status check (check this FIRST to avoid greeting conflicts)
+    if any(phrase in command for phrase in ['how are you', "what's up", "how's it going", 'how are things', 'how you doing']):
         return command_handler.get_status()
+
+    # Greeting (only if NOT asking how I am)
+    elif any(word in command for word in ['hello', 'hi', 'hey', 'greetings']) and 'how' not in command:
+        return command_handler.get_greeting()
 
     # Name inquiry
     elif 'your name' in command or 'who are you' in command:
@@ -83,6 +83,10 @@ def process_command(command_text: str) -> str:
     # Help
     elif 'help' in command or 'what can you do' in command or 'capabilities' in command:
         return command_handler.get_help()
+
+    # Email (disabled for security)
+    elif 'email' in command or 'send' in command and '@' in command:
+        return "I don't have email capabilities for security reasons, but I can help you draft a message or assist with other tasks!"
 
     # Unknown command - try AI fallback
     else:

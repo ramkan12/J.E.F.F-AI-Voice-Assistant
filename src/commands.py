@@ -36,10 +36,10 @@ class CommandHandler:
         ]
 
         self.greetings = [
-            "Hello there!",
-            "Hi! How can I help you?",
-            "Hey! What can I do for you today?",
-            "Greetings! Ready to assist you!"
+            "Hey! How's it going?",
+            "Hi there! What's up?",
+            "Hello! Ready to help!",
+            "Hey! What can I help you with?"
         ]
 
         self.status_responses = [
@@ -239,7 +239,7 @@ class CommandHandler:
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are J.E.F.F (Just an Extremely Friendly Fella), a helpful and friendly voice assistant. Keep responses concise (2-3 sentences max) and conversational."
+                        "content": "You are J.E.F.F (Just an Extremely Friendly Fella), a helpful and friendly voice assistant. Keep responses concise (2-3 sentences max) and direct. Answer the question directly without generic greetings like 'Hello!' or 'Hi! How can I help you?'. Just provide the information or assistance requested."
                     },
                     {
                         "role": "user",

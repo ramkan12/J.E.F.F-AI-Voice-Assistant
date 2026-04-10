@@ -3,7 +3,7 @@ Unit tests for command handlers
 """
 
 import pytest
-from jeff.commands import CommandHandler
+from src.commands import CommandHandler
 
 
 class TestCommandHandler:

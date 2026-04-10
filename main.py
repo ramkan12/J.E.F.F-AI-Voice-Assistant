@@ -11,8 +11,8 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from jeff import VoiceAssistant
-from jeff.utils import load_config, setup_logging
+from src import VoiceAssistant
+from src.utils import load_config, setup_logging
 
 
 def parse_arguments():
