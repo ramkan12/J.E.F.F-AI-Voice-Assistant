@@ -29,16 +29,24 @@ header {
     background: linear-gradient(135deg, #800000 0%, #4d0000 100%);
     color: #ffffff;
     padding: 30px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 25px;
     border-bottom: 3px solid #b30000;
 }
 
 .jeff-logo {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 15px;
-    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
     border: 3px solid #ffffff;
+    flex-shrink: 0;
+}
+
+.header-text {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
 header h1 {
@@ -47,12 +55,14 @@ header h1 {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     letter-spacing: 3px;
+    line-height: 1;
 }
 
 .subtitle {
     font-size: 1.1em;
     opacity: 0.9;
     font-family: 'Courier New', Courier, monospace;
+    margin-top: 0;
 }
 
 /* Main Content */
@@ -297,6 +307,15 @@ footer a:hover {
 
 /* Responsive */
 @media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-text {
+        text-align: center;
+    }
+
     header h1 {
         font-size: 2em;
     }
@@ -314,8 +333,8 @@ footer a:hover {
     }
 
     .jeff-logo {
-        width: 60px;
-        height: 60px;
+        width: 120px;
+        height: 120px;
     }
 }
 
